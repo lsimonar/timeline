@@ -1,4 +1,4 @@
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import { DragDropContext, Droppable, Draggable, DraggingStyle, NotDraggingStyle } from 'react-beautiful-dnd';
 import './DraggableList.css';
 import React, {useState} from 'react';
 
@@ -42,40 +42,59 @@ const finalSpaceCharacters = [
   
       updateCharacters(items);
     }
+    
+    const grid = 8;
+
+    const getItemStyle = (isDragging: boolean, draggableStyle: any) => ({
+        // some basic styles to make the items look a bit nicer
+        userSelect: 'none',
+        padding: grid * 2,
+        margin: `0 ${grid}px 0 0`,
+      
+        // change background colour if dragging
+        background: isDragging ? 'lightgreen' : 'grey',
+      
+        // styles we need to apply on draggables
+        ...draggableStyle,
+      });
+      
+      const getListStyle = (isDraggingOver: boolean) => ({
+        background: isDraggingOver ? 'lightblue' : 'lightgrey',
+        display: 'flex',
+        padding: grid,
+        overflow: 'auto',
+      });
 
     return (
-        <div className="App">
-          <header className="App-header">
-            <h1>Final Space Characters</h1>
             <DragDropContext onDragEnd={handleOnDragEnd}>
-              <Droppable droppableId="characters">
-                {(provided) => (
-                  <ul className="characters" {...provided.droppableProps} ref={provided.innerRef}>
-                    {characters.map(({id, name, thumb}, index) => {
-                      return (
-                        <Draggable key={id} draggableId={id} index={index}>
-                          {(provided) => (
-                            <li ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
-                              <div className="characters-thumb">
-                                <img src={thumb} alt={`${name} Thumb`} />
-                              </div>
-                              <p>
-                                { name }
-                              </p>
-                            </li>
-                          )}
-                        </Draggable>
-                      );
-                    })}
+              <Droppable droppableId="droppable" direction="horizontal">
+                {(provided, snapshot) => (
+                  <div
+                    ref={provided.innerRef}
+                    style={getListStyle(snapshot.isDraggingOver)}
+                    {...provided.droppableProps}
+                  >
+                    {characters.map((item, index) => (
+                      <Draggable key={item.id} draggableId={item.id} index={index}>
+                        {(provided, snapshot) => (
+                          <div
+                            ref={provided.innerRef}
+                            {...provided.draggableProps}
+                            {...provided.dragHandleProps}
+                            style={getItemStyle(
+                              snapshot.isDragging,
+                              provided.draggableProps.style
+                            )}
+                          >
+                            {item.name}
+                          </div>
+                        )}
+                      </Draggable>
+                    ))}
                     {provided.placeholder}
-                  </ul>
+                  </div>
                 )}
               </Droppable>
             </DragDropContext>
-          </header>
-          <p>
-            Images from <a href="https://final-space.fandom.com/wiki/Final_Space_Wiki">Final Space Wiki</a>
-          </p>
-        </div>
-      );
+    )
 }
