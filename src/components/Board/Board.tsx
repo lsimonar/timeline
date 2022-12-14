@@ -1,13 +1,12 @@
 
 import React, { useState } from "react";
-import { DragDropContext, Droppable, DropResult } from "react-beautiful-dnd";
-import TimelineCard from "../Card/TimelineCard";
-import NextCard from "../NextCard/NextCard";
+import { DragDropContext, DropResult } from "react-beautiful-dnd";
 import { Card } from "../../utils/types";
-import './DraggableList.scss'
+import './Board.scss'
 import PlayedCards from "../PlayedCards/PlayedCards";
+import NextCard from "../NextCard/NextCard";
 
-function Timeline() {
+function Board() {
   
   const [cards, setCards] = useState<Card[]>([
     { id: "1", date: new Date("11-10-1992"), content: "Card 1" },
@@ -74,4 +73,4 @@ function Timeline() {
   );
 }
 
-export default Timeline;
+export default Board;

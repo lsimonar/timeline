@@ -1,10 +1,10 @@
-import Timeline from './components/DraggableList/DraggableList';
+import Board from './components/Board/Board';
 import './App.scss';
 
   function App() {
     return (
       <div className="board-ctn">
-        <Timeline />
+        <Board />
       </div>
     )
 }
