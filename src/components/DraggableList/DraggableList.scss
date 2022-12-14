@@ -16,13 +16,16 @@
 
 .top {
   grid-row: 1;
-}
-
-.bottom {
-  grid-row: 2;
   overflow-x: auto;
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
+}
+
+.bottom {
+  grid-row: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

@@ -22,8 +22,8 @@ function PlayedCards( {cards}: PlayedCardsProps ){
                             {cards.map((card, index: number) => (
                             <TimelineCard key={card.id} card={card} index={index} />
                             ))}
-                            {provided.placeholder}
                         </div>
+                        {provided.placeholder}
                     </div>
                 )}
                 </Droppable>
