@@ -1,100 +1,77 @@
-import { DragDropContext, Droppable, Draggable, DraggingStyle, NotDraggingStyle } from 'react-beautiful-dnd';
-import './DraggableList.css';
-import React, {useState} from 'react';
 
-const finalSpaceCharacters = [
-    {
-      id: 'gary',
-      name: 'Gary Goodspeed',
-      thumb: '/images/co2Total.png'
-    },
-    {
-      id: 'cato',
-      name: 'Little Cato',
-      thumb: '/images/coastline.png'
-    },
-    {
-      id: 'kvn',
-      name: 'KVN',
-      thumb: '/images/footballMatches.png'
-    },
-    {
-      id: 'mooncake',
-      name: 'Mooncake',
-      thumb: '/images/rankingFifa.png'
-    },
-    {
-      id: 'quinn',
-      name: 'Quinn Ergon',
-      thumb: '/images/highest-mountain.png'
-    }
-  ]
+import React, { useState } from "react";
+import { DragDropContext, Droppable, DropResult } from "react-beautiful-dnd";
+import TimelineCard from "../Card/TimelineCard";
+import NextCard from "../NextCard/NextCard";
+import { Card } from "../../utils/types";
+import './DraggableList.scss'
+import PlayedCards from "../PlayedCards/PlayedCards";
 
-  export default function DraggableList() {
-    const [characters, updateCharacters] = useState(finalSpaceCharacters);
-
-    function handleOnDragEnd(result: any) {
-      if (!result.destination) return;
+function Timeline() {
   
-      const items = Array.from(characters);
-      const [reorderedItem] = items.splice(result.source.index, 1);
-      items.splice(result.destination.index, 0, reorderedItem);
-  
-      updateCharacters(items);
+  const [cards, setCards] = useState<Card[]>([
+    { id: "1", date: new Date("11-10-1992"), content: "Card 1" },
+    { id: "2", date: new Date("11-10-1992"), content: "Card 2" },
+    { id: "3", date: new Date("11-10-1992"), content: "Card 3" },
+  ]);
+
+  const [nextCard, setNextCard] = useState<Card[]>(
+    [{id: "0", date: new Date("10-10-1992"), content: "Card 0"}]
+  )
+
+  const onDragEnd = (result: DropResult) => {
+    const {source, destination} = result;
+    if (!destination) {
+      return;
     }
-    
-    const grid = 8;
 
-    const getItemStyle = (isDragging: boolean, draggableStyle: any) => ({
-        // some basic styles to make the items look a bit nicer
-        userSelect: 'none',
-        padding: grid * 2,
-        margin: `0 ${grid}px 0 0`,
-      
-        // change background colour if dragging
-        background: isDragging ? 'lightgreen' : 'grey',
-      
-        // styles we need to apply on draggables
-        ...draggableStyle,
-      });
-      
-      const getListStyle = (isDraggingOver: boolean) => ({
-        background: isDraggingOver ? 'lightblue' : 'lightgrey',
-        display: 'flex',
-        padding: grid,
-        overflow: 'auto',
-      });
+    // Handle resorting of bottom list, but this should be removed as no dragging is allowed.
+    if(source.droppableId === destination.droppableId){
+      const sourceIndex = source.index;
+      const destinationIndex = destination.index;
 
-    return (
-            <DragDropContext onDragEnd={handleOnDragEnd}>
-              <Droppable droppableId="droppable" direction="horizontal">
-                {(provided, snapshot) => (
-                  <div
-                    ref={provided.innerRef}
-                    style={getListStyle(snapshot.isDraggingOver)}
-                    {...provided.droppableProps}
-                  >
-                    {characters.map((item, index) => (
-                      <Draggable key={item.id} draggableId={item.id} index={index}>
-                        {(provided, snapshot) => (
-                          <div
-                            ref={provided.innerRef}
-                            {...provided.draggableProps}
-                            {...provided.dragHandleProps}
-                            style={getItemStyle(
-                              snapshot.isDragging,
-                              provided.draggableProps.style
-                            )}
-                          >
-                            {item.name}
-                          </div>
-                        )}
-                      </Draggable>
-                    ))}
-                    {provided.placeholder}
-                  </div>
-                )}
-              </Droppable>
-            </DragDropContext>
-    )
+      const updatedCards = [...cards];
+      updatedCards.splice(sourceIndex, 1); 
+      updatedCards.splice(destinationIndex, 0, cards[sourceIndex]);
+
+      if(source.droppableId === 'timeline-cards') setCards(updatedCards);
+
+    } else {
+      let sourceClone;
+      let destClone;
+      if(source.droppableId === 'timeline-cards'){
+        sourceClone = Array.from(cards);
+      } else {
+        sourceClone = Array.from(nextCard);
+      }
+
+      if(destination.droppableId === 'timeline-cards'){
+        destClone = Array.from(cards);
+      } else {
+        destClone = Array.from(nextCard);
+      }
+
+      const [removed] = sourceClone.splice(source.index, 1);
+      destClone.splice(destination.index, 0, removed);
+  
+      source.droppableId === 'next-card'? setNextCard(sourceClone) : setCards(sourceClone);
+      destination.droppableId === 'next-card'? setNextCard(destClone) : setCards(destClone);
+    }
+
+  };
+
+  return (
+    <div className="wrapper">
+      <DragDropContext onDragEnd={onDragEnd}>
+        <div className="top">
+          <PlayedCards cards={cards}/>
+        </div>
+        <div className="bottom">
+          <NextCard nextCard={nextCard} />
+        </div>
+      </DragDropContext>
+    </div>
+  );
 }
+
+export default Timeline;

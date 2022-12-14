@@ -1,0 +1,44 @@
+// Import the required libraries
+const rp = require("request-promise");
+const cheerio = require("cheerio");
+const fs = require("fs");
+
+// Define the URL of the webpage to scrape
+const url = "https://en.wikipedia.org/wiki/Timeline_of_ancient_history";
+
+// Define the main function
+async function main() {
+  // Send a GET request to the URL
+  const html = await rp(url);
+
+  // Load the HTML into cheerio
+  const $ = cheerio.load(html);
+
+  // Create an array to store the data
+  const data = [];
+
+  // Find all the table rows in the page
+  const rows = $("tr");
+
+  // Iterate over the rows and extract the data
+  rows.each((index, row) => {
+    // Find the cells in the row
+    const cells = $(row).find("td");
+
+    // If the row has two cells, it contains data
+    if (cells.length === 2) {
+      // Extract the date and event from the cells
+      const date = $(cells[0]).text();
+      const event = $(cells[1]).text();
+
+      // Add the data to the array
+      data.push({ date, event });
+    }
+  });
+
+  // Save the data to a JSON file
+  fs.writeFileSync("data.json", JSON.stringify(data, null, 2));
+}
+
+// Call the main function
+main();

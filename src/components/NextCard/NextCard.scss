@@ -1,0 +1,19 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 40px 0;
+  
+    .wrapper {
+      padding-left: 0px;
+      width: 192px;
+      height: 270px;
+      position: relative;
+      border: 1px dashed #5c7080;
+      border-radius: 5px;
+  
+      .list {
+        height: 240px;
+      }
+    }
+  }
