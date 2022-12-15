@@ -3,9 +3,7 @@ import './App.scss';
 
   function App() {
     return (
-      <div className="board-ctn">
         <Board />
-      </div>
     )
 }
 

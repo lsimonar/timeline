@@ -5,12 +5,13 @@ import './TimelineCard.scss';
 
 interface cardProps {
     card: Card,
-    index: number
+    index: number,
+    isDragDisabled: boolean
 }
 
-export default function TimelineCard({ card, index }: cardProps) {
+export default function TimelineCard({ card, index, isDragDisabled }: cardProps) {
     return (
-      <Draggable draggableId={card.id} index={index}>
+      <Draggable isDragDisabled={isDragDisabled} draggableId={card.id} index={index}>
         {(provided, snapshot) => (
           <div
             ref={provided.innerRef}

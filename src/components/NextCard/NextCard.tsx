@@ -17,7 +17,7 @@ function NextCard({nextCard}: NextCardProps ) {
                     <div className="wrapper">
                         <div ref={provided.innerRef} {...provided.droppableProps} className="list">
                         {nextCard.map((card, index: number) => (
-                            <TimelineCard key={card.id} card={card} index={index} />
+                            <TimelineCard isDragDisabled={false} key={card.id} card={card} index={index} />
                         ))}
                         {provided.placeholder}
                         </div>

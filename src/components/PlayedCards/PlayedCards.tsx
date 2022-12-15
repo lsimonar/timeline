@@ -5,10 +5,11 @@ import { Card } from "../../utils/types";
 import './PlayedCards.scss';
 
 interface PlayedCardsProps {
-    cards: Card[]
+    cards: Card[],
+    isDragDisabled: boolean
 }
 
-function PlayedCards( {cards}: PlayedCardsProps ){
+function PlayedCards( {cards, isDragDisabled}: PlayedCardsProps ){
     return(
         <div className="wrapper">
             <div className="listContainer">
@@ -20,7 +21,7 @@ function PlayedCards( {cards}: PlayedCardsProps ){
                         </div>
                         <div className="items">
                             {cards.map((card, index: number) => (
-                            <TimelineCard key={card.id} card={card} index={index} />
+                            <TimelineCard isDragDisabled={isDragDisabled} key={card.id} card={card} index={index} />
                             ))}
                         </div>
                         {provided.placeholder}
