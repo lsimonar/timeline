@@ -7,8 +7,12 @@ import PlayedCards from "../PlayedCards/PlayedCards";
 import NextCard from "../NextCard/NextCard";
 import { allCards } from "../../utils/cards";
 
+interface BoardProps {
+  lifes: number;
+  setLifes: React.Dispatch<React.SetStateAction<number>>;
+}
 
-function Board() {
+function Board({lifes, setLifes}: BoardProps) {
 
   const [nextCard, setNextCard] = useState<Card[] | undefined>([allCards[0]])
   const [playedCards, setPlayedCards] = useState<Card[]>([allCards[1]]);
@@ -23,6 +27,17 @@ function Board() {
       return [randomCard]
     }
     return undefined
+  }
+
+  const checkCorrect = (index: number, playedCards: Card[]) => {
+
+    if(nextCard && index > 0 && nextCard[0].date <= playedCards[index-1].date){
+      return false;
+    }
+    if(nextCard && index < playedCards.length - 1 && nextCard[0].date >= playedCards[index + 1].date){
+      return false;
+    }
+    return true;
   }
 
   const onDragStart = () => {
@@ -48,22 +63,13 @@ function Board() {
   
       if(checkCorrect(destination.index, destClone)){
         setPlayedCards(destClone);
+      } else{
+        setLifes(lifes - 1)
       }
 
       setNextCard(getRandomCard())
     }
   };
-
-  const checkCorrect = (index: number, playedCards: Card[]) => {
-
-    if(nextCard && index > 0 && nextCard[0].date <= playedCards[index-1].date){
-      return false;
-    }
-    if(nextCard && index < playedCards.length - 1 && nextCard[0].date >= playedCards[index + 1].date){
-      return false;
-    }
-    return true;
-  }
 
   return (
     <div className="wrapper">

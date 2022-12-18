@@ -20,10 +20,11 @@ body {
   overscroll-behavior-y: contain;
 }
 
-a {
-  color: black;
-}
-
 * {
   box-sizing: border-box;
 }
+
+.app-ctn{
+  text-align: center;
+}
+
