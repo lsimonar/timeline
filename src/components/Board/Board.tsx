@@ -7,25 +7,25 @@ import PlayedCards from "../PlayedCards/PlayedCards";
 import NextCard from "../NextCard/NextCard";
 import { allCards } from "../../utils/cards";
 
-let cardsToPlay = allCards;
 
 function Board() {
 
+  const [nextCard, setNextCard] = useState<Card[] | undefined>([allCards[0]])
+  const [playedCards, setPlayedCards] = useState<Card[]>([allCards[1]]);
+  const [cardsToPlay, setCardsToPlay] = useState(allCards.splice(2))
+  const [isDragging, setIsDragging] = useState<boolean>(true);
+
   const getRandomCard = () => {
-    if(cardsToPlay.length > 0){
+    if(cardsToPlay.length > 0 && nextCard){
       let cardList = [...cardsToPlay];
       console.log(cardList)
       const [randomCard] = cardList.splice(Math.floor(Math.random()*cardList.length), 1)
       console.log(cardList)
-      cardsToPlay = [...cardList]
-      return randomCard
+      setCardsToPlay([...cardList]);
+      return [randomCard]
     }
-    return {} as Card
+    return undefined
   }
-
-  const [nextCard, setNextCard] = useState<Card[]>([getRandomCard()])
-  const [playedCards, setPlayedCards] = useState<Card[]>([getRandomCard()]);
-  const [isDragging, setIsDragging] = useState<boolean>(true);
 
   const onDragStart = () => {
     setIsDragging(false);
@@ -34,7 +34,7 @@ function Board() {
   const onDragEnd = (result: DropResult) => {
     const {source, destination} = result;
     setIsDragging(true);
-    if (!destination || destination.droppableId === 'next-card') {
+    if (!destination || destination.droppableId === 'next-card' || !nextCard) {
       return;
     }
 
@@ -49,7 +49,7 @@ function Board() {
       destClone.splice(destination.index, 0, removed);
   
       setPlayedCards(destClone);
-      setNextCard([getRandomCard()])
+      setNextCard(getRandomCard())
     }
   };
 
@@ -60,7 +60,7 @@ function Board() {
           <PlayedCards isDragDisabled={isDragging} cards={playedCards}/>
         </div>
         <div className="bottom">
-          {cardsToPlay.length > 0 && <NextCard nextCard={nextCard} />}
+          {cardsToPlay.length > -1 && nextCard && <NextCard nextCard={nextCard} />}
         </div>
       </DragDropContext>
     </div>

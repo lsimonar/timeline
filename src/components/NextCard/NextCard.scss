@@ -6,14 +6,16 @@
   
     .wrapper {
       padding-left: 0px;
-      width: 192px;
-      height: 270px;
+      //width: 192px;
+      //height: 14.5em;
       position: relative;
-      border: 1px dashed #5c7080;
+      //border: 1px dashed #5c7080;
       border-radius: 5px;
   
       .list {
-        height: 240px;
+        height: 14.5em;
+        border-radius: 5px;
+        background-color: antiquewhite;
       }
     }
   }
