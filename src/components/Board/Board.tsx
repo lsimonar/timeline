@@ -18,9 +18,7 @@ function Board() {
   const getRandomCard = () => {
     if(cardsToPlay.length > 0 && nextCard){
       let cardList = [...cardsToPlay];
-      console.log(cardList)
       const [randomCard] = cardList.splice(Math.floor(Math.random()*cardList.length), 1)
-      console.log(cardList)
       setCardsToPlay([...cardList]);
       return [randomCard]
     }
@@ -41,17 +39,31 @@ function Board() {
     if (destination.droppableId === 'timeline-cards' && source.droppableId === 'next-card') {
       let sourceClone;
       let destClone;
-
+    
       sourceClone = Array.from(nextCard);
       destClone = Array.from(playedCards);
 
       const [removed] = sourceClone.splice(source.index, 1);
       destClone.splice(destination.index, 0, removed);
   
-      setPlayedCards(destClone);
+      if(checkCorrect(destination.index, destClone)){
+        setPlayedCards(destClone);
+      }
+
       setNextCard(getRandomCard())
     }
   };
+
+  const checkCorrect = (index: number, playedCards: Card[]) => {
+
+    if(nextCard && index > 0 && nextCard[0].date <= playedCards[index-1].date){
+      return false;
+    }
+    if(nextCard && index < playedCards.length - 1 && nextCard[0].date >= playedCards[index + 1].date){
+      return false;
+    }
+    return true;
+  }
 
   return (
     <div className="wrapper">
