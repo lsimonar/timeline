@@ -1,4 +1,4 @@
-html,
+
 body {
   padding: 0;
   margin: 0;
@@ -6,12 +6,10 @@ body {
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   color: black;
   font-size: 14px;
-  background: rgba(151, 152, 155, 0.5);
+  background: rgba(152, 172, 232, 0.5);
 }
 
-html,
-body,
-#__next {
+body {
   width: 100%;
   height: 100%;
 }
@@ -26,5 +24,14 @@ body {
 
 .app-ctn{
   text-align: center;
+}
+
+.lifes-ctn{
+  margin-top: 20px;
+  height: 10vh;
+}
+
+.board-ctn{
+  height: 80vh;
 }
 

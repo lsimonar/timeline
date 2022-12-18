@@ -16,11 +16,11 @@ function NextCard({nextCard}: NextCardProps ) {
                 {(provided) => (
                     <div className="wrapper">
                         <div ref={provided.innerRef} {...provided.droppableProps} className="list">
-                        {nextCard.map((card, index: number) => (
-                            <TimelineCard isDragDisabled={false} key={card.id} card={card} index={index} />
-                        ))}
-                        {provided.placeholder}
+    
+                            <TimelineCard isDragDisabled={false} key={nextCard[0].id} card={nextCard[0]} index={0} />
+        
                         </div>
+                        {provided.placeholder}
                     </div>
                 )}
             </Droppable>

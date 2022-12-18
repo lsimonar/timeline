@@ -1,15 +1,7 @@
-.container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: row;
-    margin: 10px;
-}
-
 .wrapper {
   display: grid;
   grid-auto-columns: auto;
-  grid-template-rows: 350px auto;
+  grid-template-rows: 300px auto;
   width: 100%;
   height: 100%;
 }
@@ -19,7 +11,6 @@
   overflow-x: auto;
   display: flex;
   align-items: center;
-  justify-content: center;
   position: relative;
 }
 

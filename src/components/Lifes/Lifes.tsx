@@ -10,7 +10,7 @@ function Lifes({lifes}: LifesProps) {
     const generateHearts = () => {
         let hearts: JSX.Element[] = [];
         for(let i=0; i< lifes; i++){
-            hearts.push(<span>💗</span>)
+            hearts.push(<span key={i}>💗</span>)
         }
         return hearts;
     }
