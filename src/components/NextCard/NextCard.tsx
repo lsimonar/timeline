@@ -22,8 +22,8 @@ function NextCard({nextCard}: NextCardProps ) {
                                 card={nextCard[0]} 
                                 index={0}
                             />
+                            {provided.placeholder}
                         </div>
-                        {provided.placeholder}
                     </div>
                 )}
             </Droppable>

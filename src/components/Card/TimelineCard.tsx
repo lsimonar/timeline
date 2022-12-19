@@ -13,27 +13,25 @@ interface cardProps {
 export default function TimelineCard({ card, index, isDragDisabled, isFlipped }: cardProps) {
     return (
       <Draggable isDragDisabled={isDragDisabled} draggableId={card.id} index={index}>
-        {(provided, snapshot) => (
+        {(provided, snapshot) => { return (
           <div
             ref={provided.innerRef}
             {...provided.draggableProps}
             {...provided.dragHandleProps}
-            style={{
-              margin: "10px",
-              borderRadius: "10px",
-              backgroundColor: snapshot.isDragging ? "#263B4A" : "#456C86",
-              ...provided.draggableProps.style,
-            }}
           >
-            <div className={`timeline-card ${isFlipped ? 'flipped' : ''}`} 
-                 data-back={`${card.date.getDate()}, ${card.date.getMonth()}, ${card.date.getFullYear()}`}>
-              <div>
-                <h3>Card {card.id}</h3>
-                <p>{card.content}</p>
+            <div className="card">
+              <div id={card.id} className={`card-inner ${isFlipped? 'flipped' : ''}`} >
+                <div className="card-front">
+                  <h2 className="card-title">Card {card.id}</h2>
+                  <p className="card-text">{card.content}</p>
+                </div>
+                <div className="card-back">
+                  <p>{`${card.date.getDate()}, ${card.date.getMonth()}, ${card.date.getFullYear()}`}</p>
+                </div>
               </div>
             </div>
           </div>
-        )}
+        )}}
       </Draggable>
     );
   }

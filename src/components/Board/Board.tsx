@@ -6,6 +6,7 @@ import './Board.scss'
 import PlayedCards from "../PlayedCards/PlayedCards";
 import NextCard from "../NextCard/NextCard";
 import { allCards } from "../../utils/cards";
+import Lifes from '../Lifes/Lifes';
 
 interface BoardProps {
   lifes: number;
@@ -72,16 +73,17 @@ function Board({lifes, setLifes}: BoardProps) {
   };
 
   return (
-    <div className="wrapper">
       <DragDropContext onDragStart={onDragStart} onDragEnd={onDragEnd}>
-        <div className="top">
-          <PlayedCards isDragDisabled={isDragging} cards={playedCards}/>
-        </div>
-        <div className="bottom">
-          {cardsToPlay.length > -1 && nextCard && <NextCard nextCard={nextCard} />}
+        <div className="wrapper">
+          <div className="bottom">
+            <Lifes lifes={lifes} />
+            <PlayedCards isDragDisabled={isDragging} cards={playedCards}/>
+          </div>
+          <div className="top">
+            {cardsToPlay.length > -1 && nextCard && <NextCard nextCard={nextCard} />}
+          </div>
         </div>
       </DragDropContext>
-    </div>
   );
 }
 
