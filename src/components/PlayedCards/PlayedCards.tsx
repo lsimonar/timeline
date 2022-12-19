@@ -21,7 +21,13 @@ function PlayedCards( {cards, isDragDisabled}: PlayedCardsProps ){
                         </div>
                         <div className="items">
                             {cards.map((card, index: number) => (
-                            <TimelineCard isDragDisabled={isDragDisabled} key={card.id} card={card} index={index} />
+                            <TimelineCard 
+                                isDragDisabled={isDragDisabled} 
+                                key={card.id} 
+                                card={card} 
+                                index={index} 
+                                isFlipped={true}
+                            />
                             ))}
                         </div>
                         {provided.placeholder}

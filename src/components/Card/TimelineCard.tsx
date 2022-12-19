@@ -6,10 +6,11 @@ import './TimelineCard.scss';
 interface cardProps {
     card: Card,
     index: number,
-    isDragDisabled: boolean
+    isDragDisabled: boolean,
+    isFlipped?: boolean
 }
 
-export default function TimelineCard({ card, index, isDragDisabled }: cardProps) {
+export default function TimelineCard({ card, index, isDragDisabled, isFlipped }: cardProps) {
     return (
       <Draggable isDragDisabled={isDragDisabled} draggableId={card.id} index={index}>
         {(provided, snapshot) => (
@@ -24,8 +25,8 @@ export default function TimelineCard({ card, index, isDragDisabled }: cardProps)
               ...provided.draggableProps.style,
             }}
           >
-            <div className="timeline-card">
-              <div>{card.date.getDate()}, {card.date.getMonth()}, {card.date.getFullYear()}</div>
+            <div className={`timeline-card ${isFlipped ? 'flipped' : ''}`} 
+                 data-back={`${card.date.getDate()}, ${card.date.getMonth()}, ${card.date.getFullYear()}`}>
               <div>
                 <h3>Card {card.id}</h3>
                 <p>{card.content}</p>

@@ -16,9 +16,12 @@ function NextCard({nextCard}: NextCardProps ) {
                 {(provided) => (
                     <div className="wrapper">
                         <div ref={provided.innerRef} {...provided.droppableProps} className="list">
-    
-                            <TimelineCard isDragDisabled={false} key={nextCard[0].id} card={nextCard[0]} index={0} />
-        
+                            <TimelineCard 
+                                isDragDisabled={false} 
+                                key={nextCard[0].id} 
+                                card={nextCard[0]} 
+                                index={0}
+                            />
                         </div>
                         {provided.placeholder}
                     </div>
