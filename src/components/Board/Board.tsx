@@ -88,7 +88,7 @@ function Board({ lifes, setLifes }: BoardProps) {
         {lifes > 0 ?
           <div className="bottom">
             {cardsToPlay.length > -1 && nextCard && <NextCard nextCard={nextCard} />}</div>
-           : <div className= "bottom"> <button onClick={startOver}>Start over</button></div>}
+           : <div className= "bottom"> <button className = "start-over" onClick={startOver}>Start over</button></div>}
 
       </div>
     </DragDropContext>
