@@ -9,7 +9,10 @@
 .bottom {
   grid-row: 2;
 }
-
+.wrong-cards{
+  display:flex;
+  flex-direction: row;
+}
 .top {
   grid-row: 1;
   overflow-x: auto;

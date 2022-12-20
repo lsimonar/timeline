@@ -1,11 +1,12 @@
 
 import React, { useState, useEffect } from "react";
-import { DragDropContext, DropResult } from "react-beautiful-dnd";
+import { DragDropContext, Droppable, DropResult } from "react-beautiful-dnd";
 import { Card } from "../../utils/types";
 import './Board.scss'
 import PlayedCards from "../PlayedCards/PlayedCards";
 import NextCard from "../NextCard/NextCard";
 import { allCards } from "../../utils/cards";
+import TimelineCard from "../Card/TimelineCard";
 
 interface BoardProps {
   lifes: number;
@@ -18,6 +19,7 @@ function Board({ lifes, setLifes }: BoardProps) {
   const [playedCards, setPlayedCards] = useState<Card[]>([allCards[1]]);
   const [cardsToPlay, setCardsToPlay] = useState<Card[]>(allCards.slice(2))
   const [isDragging, setIsDragging] = useState<boolean>(true);
+  const [wrongCards, setWrongCards] = useState<Card[]>([]);
 
   const startOver = () => {
     setNextCard([allCards[0]])
@@ -73,6 +75,7 @@ function Board({ lifes, setLifes }: BoardProps) {
         setPlayedCards(destClone);
       } else {
         setLifes(lifes - 1)
+        setWrongCards([...wrongCards, removed])
       }
 
       setNextCard(getRandomCard())
@@ -89,8 +92,16 @@ function Board({ lifes, setLifes }: BoardProps) {
           <div className="bottom">
             {cardsToPlay.length > -1 && nextCard && <NextCard nextCard={nextCard} />}</div>
            : <div className= "bottom"> <button className = "start-over" onClick={startOver}>Start over</button></div>}
-
       </div>
+      <h1>Wrong cards</h1>
+      <Droppable droppableId="" direction="horizontal">
+      {(provided) => (
+                    <div className = "wrong-cards" ref={provided.innerRef} {...provided.droppableProps}>
+      {wrongCards && wrongCards.map((card,i) => 
+      <TimelineCard isWrong = {true} key={card.id}card={card}index={i} isDragDisabled={true} isFlipped={true}/>)}
+      
+      </div>)}
+      </Droppable>    
     </DragDropContext>
   );
 }

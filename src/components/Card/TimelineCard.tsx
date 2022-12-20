@@ -7,10 +7,11 @@ interface cardProps {
     card: Card,
     index: number,
     isDragDisabled: boolean,
-    isFlipped?: boolean
+    isFlipped?: boolean, 
+    isWrong?: boolean
 }
 
-export default function TimelineCard({ card, index, isDragDisabled, isFlipped }: cardProps) {
+export default function TimelineCard({ card, index, isDragDisabled, isFlipped, isWrong }: cardProps) {
       
     return (
       <Draggable isDragDisabled={isDragDisabled} draggableId={card.id} index={index} >
@@ -28,7 +29,7 @@ export default function TimelineCard({ card, index, isDragDisabled, isFlipped }:
                 </div>
                 <div className="card-back">
                   <img src={process.env.PUBLIC_URL + card.img} alt={card.content}></img>
-                  <p className="card-date">{`${card.date.getFullYear()}`}</p>
+                  <p className= {isWrong === true ? 'card-date wrong': 'card-date' }>{`${card.date.getFullYear()}`}</p>
                   <p className="card-text">{card.content}</p>
                 </div>
               </div>

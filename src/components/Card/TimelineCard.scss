@@ -53,6 +53,9 @@
     width: 50px; 
     min-width: fit-content;
     z-index: 1;
+    &.wrong{
+      background-color: red;
+    }
   }
 
   .card-text {
