@@ -1,17 +1,17 @@
 .wrapper {
   display: grid;
   grid-auto-columns: auto;
-  grid-template-rows: 350px auto;
+  grid-template-rows: 250px auto;
   width: 100%;
   height: 100%;
 }
 
 .bottom {
-  grid-row: 1;
+  grid-row: 2;
 }
 
 .top {
-  grid-row: 2;
+  grid-row: 1;
   overflow-x: auto;
   display: flex;
   align-items: center;

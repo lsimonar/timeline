@@ -8,6 +8,7 @@ import './App.scss';
 
     return (
       <div className="app-ctn">
+        <Lifes lifes={lifes} />
         <Board lifes={lifes} setLifes={setLifes} />
       </div>
     )
