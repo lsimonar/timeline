@@ -23,11 +23,11 @@ export default function TimelineCard({ card, index, isDragDisabled, isFlipped }:
             <div className="card">
               <div id={card.id} className={`card-inner ${isFlipped? 'flipped' : ''}`} >
                 <div className="card-front">
-                  <img src={require('../../assets/images/french_revolution.jpg')} alt={card.content}></img>
+                  <img src={process.env.PUBLIC_URL + card.img} alt={card.content}></img>
                   <p className="card-text">{card.content}</p>
                 </div>
                 <div className="card-back">
-                  <img src={require('../../assets/images/french_revolution.jpg')} alt={card.content}></img>
+                  <img src={process.env.PUBLIC_URL + card.img} alt={card.content}></img>
                   <p className="card-date">{`${card.date.getFullYear()}`}</p>
                   <p className="card-text">{card.content}</p>
                 </div>
