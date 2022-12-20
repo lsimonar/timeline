@@ -16,13 +16,13 @@ function Board({ lifes, setLifes }: BoardProps) {
 
   const [nextCard, setNextCard] = useState<Card[] | undefined>([allCards[0]])
   const [playedCards, setPlayedCards] = useState<Card[]>([allCards[1]]);
-  const [cardsToPlay, setCardsToPlay] = useState(allCards.splice(2))
+  const [cardsToPlay, setCardsToPlay] = useState<Card[]>(allCards.slice(2))
   const [isDragging, setIsDragging] = useState<boolean>(true);
 
   const startOver = () => {
     setNextCard([allCards[0]])
     setPlayedCards([allCards[1]])
-    setCardsToPlay(allCards.splice(2))
+    setCardsToPlay(allCards.slice(2))
     setLifes(5)
   }
 
@@ -87,8 +87,8 @@ function Board({ lifes, setLifes }: BoardProps) {
         </div>
         {lifes > 0 ?
           <div className="bottom">
-            {cardsToPlay.length > -1 && nextCard && <NextCard nextCard={nextCard} />}
-          </div> : <button onClick={startOver}>Start over</button>}
+            {cardsToPlay.length > -1 && nextCard && <NextCard nextCard={nextCard} />}</div>
+           : <div className= "bottom"> <button onClick={startOver}>Start over</button></div>}
 
       </div>
     </DragDropContext>
