@@ -77,9 +77,10 @@ function Board({lifes, setLifes}: BoardProps) {
           <div className="top">
             <PlayedCards isDragDisabled={isDragging} cards={playedCards}/>
           </div>
+          {lifes > 0 &&
           <div className="bottom">
             {cardsToPlay.length > -1 && nextCard && <NextCard nextCard={nextCard} />}
-          </div>
+          </div>}
         </div>
       </DragDropContext>
   );
