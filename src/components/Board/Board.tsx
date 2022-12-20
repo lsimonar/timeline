@@ -19,6 +19,14 @@ function Board({lifes, setLifes}: BoardProps) {
   const [cardsToPlay, setCardsToPlay] = useState(allCards.splice(2))
   const [isDragging, setIsDragging] = useState<boolean>(true);
 
+  const startOver = () =>{
+    setNextCard([allCards[0]])
+    setPlayedCards([allCards[1]])
+    setCardsToPlay(allCards.splice(2))
+    setLifes(5)
+  }
+
+
   const getRandomCard = () => {
     if(cardsToPlay.length > 0 && nextCard){
       let cardList = [...cardsToPlay];
@@ -77,10 +85,11 @@ function Board({lifes, setLifes}: BoardProps) {
           <div className="top">
             <PlayedCards isDragDisabled={isDragging} cards={playedCards}/>
           </div>
-          {lifes > 0 &&
+          {lifes > 0 ?
           <div className="bottom">
             {cardsToPlay.length > -1 && nextCard && <NextCard nextCard={nextCard} />}
-          </div>}
+          </div>:  <button onClick = {startOver}>Start over</button>  }
+        
         </div>
       </DragDropContext>
   );
