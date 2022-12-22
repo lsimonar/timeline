@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { DragDropContext, Droppable, DropResult } from "react-beautiful-dnd";
 import { Card } from "../../utils/types";
 import './Board.scss'
@@ -20,12 +20,15 @@ function Board({ lifes, setLifes }: BoardProps) {
   const [cardsToPlay, setCardsToPlay] = useState<Card[]>(allCards.slice(2))
   const [isDragging, setIsDragging] = useState<boolean>(true);
   const [wrongCards, setWrongCards] = useState<Card[]>([]);
+  const [cardToFlip, setCardToFlip] = useState<Card>(allCards[1]);
 
   const startOver = () => {
     setNextCard([allCards[0]])
     setPlayedCards([allCards[1]])
     setCardsToPlay(allCards.slice(2))
+    setCardToFlip(allCards[1])
     setLifes(5)
+    setWrongCards([])
   }
 
 
@@ -62,23 +65,38 @@ function Board({ lifes, setLifes }: BoardProps) {
     }
 
     if (destination.droppableId === 'timeline-cards' && source.droppableId === 'next-card') {
-      let sourceClone;
-      let destClone;
+      let sourceClone: Card[];
+      let destClone: Card[];
 
       sourceClone = Array.from(nextCard);
       destClone = Array.from(playedCards);
 
       const [removed] = sourceClone.splice(source.index, 1);
       destClone.splice(destination.index, 0, removed);
-
+      setNextCard(undefined)
       if (checkCorrect(destination.index, destClone)) {
         setPlayedCards(destClone);
+        setTimeout(
+          () => document.getElementById(removed.id)?.classList.add('flipped')
+        , 125)
+        setNextCard(getRandomCard())
       } else {
         setLifes(lifes - 1)
-        setWrongCards([...wrongCards, removed])
+        setPlayedCards(destClone);
+        setTimeout(
+          () => document.getElementById(removed.id)?.classList.add('flipped')
+        , 125)
+        setTimeout(()=> {
+          document.getElementById(removed.id)?.classList.add("wrong-effect")
+        }, 1000)
+        setTimeout(() => {
+          setWrongCards([...wrongCards, removed]);
+          let playedCardsClone = destClone
+          playedCardsClone.splice(destination.index, 1)
+          setPlayedCards([...playedCardsClone])
+          setNextCard(getRandomCard())
+        }, 2000);
       }
-
-      setNextCard(getRandomCard())
     }
   };
 
@@ -86,7 +104,7 @@ function Board({ lifes, setLifes }: BoardProps) {
     <DragDropContext onDragStart={onDragStart} onDragEnd={onDragEnd}>
       <div className="wrapper">
         <div className="top">
-          <PlayedCards isDragDisabled={isDragging} cards={playedCards} />
+          <PlayedCards isDragDisabled={isDragging} cards={playedCards} cardToFlip={cardToFlip?.id}/>
         </div>
         {lifes > 0 ?
           <div className="bottom">
@@ -95,13 +113,20 @@ function Board({ lifes, setLifes }: BoardProps) {
       </div>
       <h1>Wrong cards</h1>
       <Droppable droppableId="wrong-cards" direction="horizontal">
-      {(provided) => (
-                    <div className = "wrong-cards" ref={provided.innerRef} {...provided.droppableProps}>
-      {wrongCards && wrongCards.map((card,i) => 
-      <TimelineCard isWrong = {true} key={card.id}card={card}index={i} isDragDisabled={true} isFlipped={true}/>)}
-      
-      </div>)}
-      </Droppable>    
+        {(provided) => (
+          <div className = "wrong-cards" ref={provided.innerRef} {...provided.droppableProps}>
+            {wrongCards && wrongCards.map((card,i) => 
+              <TimelineCard 
+                isWrong = {true} 
+                key={card.id}
+                card={card}
+                index={i} 
+                isDragDisabled={true} 
+              />
+            )}
+          </div>
+        )}
+      </Droppable>
     </DragDropContext>
   );
 }
