@@ -8,7 +8,7 @@
 
 .bottom {
   grid-row: 2;
-  height: 300px;
+  height: 250px;
 }
 
 .top {
@@ -16,7 +16,8 @@
   display: flex;
   align-items: center;
   position: relative;
-  z-index: 0;
+  overflow-x: auto;
+  height: 250px;
 }
 
 .wrong-cards{
