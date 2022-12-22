@@ -94,7 +94,7 @@ function Board({ lifes, setLifes }: BoardProps) {
            : <div className= "bottom"> <button className = "start-over" onClick={startOver}>Start over</button></div>}
       </div>
       <h1>Wrong cards</h1>
-      <Droppable droppableId="" direction="horizontal">
+      <Droppable droppableId="wrong-cards" direction="horizontal">
       {(provided) => (
                     <div className = "wrong-cards" ref={provided.innerRef} {...provided.droppableProps}>
       {wrongCards && wrongCards.map((card,i) => 
