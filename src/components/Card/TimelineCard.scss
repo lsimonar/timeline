@@ -5,11 +5,10 @@
     border-radius: 7px;
     margin: 15px 10px;
     perspective: 1000px;
-    overflow: hidden;
   }
 
   img {
-    width: 142px;
+    width: 144px;
     height: 150px;
     padding: 0px;
     margin: 3px;
@@ -24,6 +23,7 @@
     text-align: center;
     transition: transform 0.8s;
     transform-style: preserve-3d;
+    z-index: 0;
   }
     
   .card-front, .card-back {
@@ -34,6 +34,7 @@
     -webkit-backface-visibility: hidden; /* Safari */
     backface-visibility: hidden;
     background-color: whitesmoke;
+    z-index: 0;
 }
 
   
@@ -52,7 +53,9 @@
     height: fit-content;
     width: 50px; 
     min-width: fit-content;
-    z-index: 1;
+    &.wrong{
+      background-color: red;
+    }
   }
 
   .card-text {
@@ -73,5 +76,11 @@
   
 .flipped {
     transform: rotateY(180deg);
+}
+
+.wrong-effect {
+  transform: rotateY(180deg) rotateZ(-10deg) translate(25px, 25px);
+  position: relative;
+  z-index: 1;
 }
   

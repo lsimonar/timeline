@@ -6,10 +6,12 @@ import './PlayedCards.scss';
 
 interface PlayedCardsProps {
     cards: Card[],
-    isDragDisabled: boolean
+    isDragDisabled: boolean,
+    cardToFlip?: string
 }
 
-function PlayedCards( {cards, isDragDisabled}: PlayedCardsProps ){
+function PlayedCards( {cards, isDragDisabled, cardToFlip}: PlayedCardsProps ){
+
     return(
         <div className="wrapper">
             <div className="listContainer">
@@ -25,8 +27,8 @@ function PlayedCards( {cards, isDragDisabled}: PlayedCardsProps ){
                                 isDragDisabled={isDragDisabled} 
                                 key={card.id} 
                                 card={card} 
-                                index={index} 
-                                isFlipped={true}
+                                index={index}
+                                cardToFlip={cardToFlip} 
                             />
                             ))}
                         </div>
