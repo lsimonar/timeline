@@ -1,5 +1,5 @@
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { DragDropContext, Droppable, DropResult } from "react-beautiful-dnd";
 import { Card } from "../../utils/types";
 import './Board.scss'
@@ -21,6 +21,7 @@ function Board({ lifes, setLifes }: BoardProps) {
   const [isDragging, setIsDragging] = useState<boolean>(true);
   const [wrongCards, setWrongCards] = useState<Card[]>([]);
   const [cardToFlip, setCardToFlip] = useState<Card>(allCards[1]);
+  const [win, setWin] = useState<boolean>(false)
 
   const startOver = () => {
     setNextCard([allCards[0]])
@@ -29,8 +30,13 @@ function Board({ lifes, setLifes }: BoardProps) {
     setCardToFlip(allCards[1])
     setLifes(5)
     setWrongCards([])
+    setWin(false)
   }
-
+  useEffect(() => {
+    if (playedCards.length === 6) {
+      setWin(true)
+    }
+  }, [playedCards])
 
   const getRandomCard = () => {
     if (cardsToPlay.length > 0 && nextCard) {
@@ -57,6 +63,8 @@ function Board({ lifes, setLifes }: BoardProps) {
     setIsDragging(false);
   }
 
+
+
   const onDragEnd = (result: DropResult) => {
     const { source, destination } = result;
     setIsDragging(true);
@@ -78,15 +86,15 @@ function Board({ lifes, setLifes }: BoardProps) {
         setPlayedCards(destClone);
         setTimeout(
           () => document.getElementById(removed.id)?.classList.add('flipped')
-        , 125)
+          , 125)
         setNextCard(getRandomCard())
       } else {
         setLifes(lifes - 1)
         setPlayedCards(destClone);
         setTimeout(
           () => document.getElementById(removed.id)?.classList.add('flipped')
-        , 125)
-        setTimeout(()=> {
+          , 125)
+        setTimeout(() => {
           document.getElementById(removed.id)?.classList.add("wrong-effect")
         }, 1000)
         setTimeout(() => {
@@ -104,24 +112,24 @@ function Board({ lifes, setLifes }: BoardProps) {
     <DragDropContext onDragStart={onDragStart} onDragEnd={onDragEnd}>
       <div className="wrapper">
         <div className="top">
-          <PlayedCards isDragDisabled={isDragging} cards={playedCards} cardToFlip={cardToFlip?.id}/>
+          <PlayedCards isDragDisabled={isDragging} cards={playedCards} cardToFlip={cardToFlip?.id} />
         </div>
         {lifes > 0 ?
           <div className="bottom">
-            {cardsToPlay.length > -1 && nextCard && <NextCard nextCard={nextCard} />}</div>
-           : <div className= "bottom"> <button className = "start-over" onClick={startOver}>Start over</button></div>}
+            {win ? <><h1>You won! Congratulations</h1> <div className="bottom"> <button className="start-over" onClick={startOver}>Start over</button></div></> : cardsToPlay.length > -1 && nextCard && <NextCard nextCard={nextCard} />}</div>
+          : <div className="bottom"> <button className="start-over" onClick={startOver}>Start over</button></div>}
       </div>
       <h1>Wrong cards</h1>
       <Droppable droppableId="wrong-cards" direction="horizontal">
         {(provided) => (
-          <div className = "wrong-cards" ref={provided.innerRef} {...provided.droppableProps}>
-            {wrongCards && wrongCards.map((card,i) => 
-              <TimelineCard 
-                isWrong = {true} 
+          <div className="wrong-cards" ref={provided.innerRef} {...provided.droppableProps}>
+            {wrongCards && wrongCards.map((card, i) =>
+              <TimelineCard
+                isWrong={true}
                 key={card.id}
                 card={card}
-                index={i} 
-                isDragDisabled={true} 
+                index={i}
+                isDragDisabled={true}
               />
             )}
           </div>
