@@ -1,3 +1,8 @@
+.board-ctn {
+  display: flex;
+  flex-direction: column;
+}
+
 .wrapper {
   display: grid;
   grid-auto-columns: auto;

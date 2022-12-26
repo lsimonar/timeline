@@ -1,12 +1,11 @@
 
 import React, { useEffect, useState } from "react";
-import { DragDropContext, Droppable, DropResult } from "react-beautiful-dnd";
+import { DragDropContext, DropResult } from "react-beautiful-dnd";
 import { Card } from "../../utils/types";
 import './Board.scss'
 import PlayedCards from "../PlayedCards/PlayedCards";
 import NextCard from "../NextCard/NextCard";
 import { allCards } from "../../utils/cards";
-import TimelineCard from "../Card/TimelineCard";
 import Lifes from "../Lifes/Lifes";
 
 interface BoardProps {

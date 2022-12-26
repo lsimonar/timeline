@@ -36,14 +36,17 @@ function Lifes({wrongCards, lifes}: LifesProps) {
         for(let i=0; i< lifes; i++){
             hearts.push(
               <div key = {i} className="square">
-                {wrongCards[i]? <Square wrongCard={wrongCards[i]}/> : ''}
+                {wrongCards[i]? <Square wrongCard={wrongCards[i]}/> : 
+                 i === 4? <span style={{color: 'red'}}>Game Over</span> : ''}
               </div>)
         }
         return hearts;
     }
 
     return(
-            <div className='flex'>{generateHearts()}</div>
+      <div className='lifes-ctn'>
+        <div className='flex'>{generateHearts()}</div>
+      </div>
     )
 }
 
