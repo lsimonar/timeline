@@ -7,11 +7,14 @@ p {
 }
 
 .square{
-    aspect-ratio: 0.7;
-    height: 50px;
+    aspect-ratio: 0.75;
+    height: 120px;
     border: 2px dashed red;
     margin: 10px;
     border-radius: 7px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .flex{
