@@ -7,6 +7,15 @@ p {
   height: 150px !important;
 }
 
+.square-ctn {
+  transform: scale(0.5);
+}
+
+.square-ctn:hover {
+  transition-duration: 0.5s;
+  transform: scale(0.8);
+}
+
 .square{
     aspect-ratio: 0.75;
     height: 120px;

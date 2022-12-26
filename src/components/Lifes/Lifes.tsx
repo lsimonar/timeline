@@ -11,7 +11,7 @@ interface SquareProps{
 
 function Square({wrongCard}: SquareProps){
     return (
-    <div style={{transform: 'scale(0.5)'} }>
+    <div className="square-ctn">
       <div className="card">
         <div id={wrongCard.id} className='card-inner flipped' >
           <div className="card-front">
