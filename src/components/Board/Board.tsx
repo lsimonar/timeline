@@ -117,7 +117,7 @@ function Board({ lifes, setLifes }: BoardProps) {
         <div className="top">
           <PlayedCards isDragDisabled={isDragging} cards={playedCards} cardToFlip={cardToFlip?.id} />
         </div>
-        {lifes > 0 ?
+        {wrongCards.length < 5 ?
           <div className="bottom">
             {win ? <><h1>You won! Congratulations</h1> <div className="bottom"> <button className="start-over" onClick={startOver}>Start over</button></div></> : cardsToPlay.length > -1 && nextCard && <NextCard nextCard={nextCard} />}</div>
           : <div className="bottom"> <button className="start-over" onClick={startOver}>Start over</button></div>}

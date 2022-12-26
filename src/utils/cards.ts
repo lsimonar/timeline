@@ -1,6 +1,5 @@
 import { Card } from "./types";
 
-const url = "../../assets/images/"
 export const allCards: Card[] = [
     { id: "1", 
       date: new Date("1215"), 
@@ -53,12 +52,12 @@ export const allCards: Card[] = [
       img: '/images/collapse_of_soviet_union.png' 
     },
     { id: "11",
-       date: new Date("2001"), 
+      date: new Date("2001"), 
       content: "The terrorist attacks of September 11", 
       img: '/images/september_11.jpg' 
     },
     { id: "12",
-       date: new Date("2019"), 
+      date: new Date("2019"), 
       content: "Start of the COVID-19 pandemic", 
       img: '/images/covid.webp'
     }
