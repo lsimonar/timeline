@@ -7,6 +7,7 @@ import PlayedCards from "../PlayedCards/PlayedCards";
 import NextCard from "../NextCard/NextCard";
 import { allCards } from "../../utils/cards";
 import TimelineCard from "../Card/TimelineCard";
+import Lifes from "../Lifes/Lifes";
 
 interface BoardProps {
   lifes: number;
@@ -109,6 +110,8 @@ function Board({ lifes, setLifes }: BoardProps) {
   };
 
   return (
+    <>
+    <Lifes wrongCards={wrongCards} lifes={lifes}/>
     <DragDropContext onDragStart={onDragStart} onDragEnd={onDragEnd}>
       <div className="wrapper">
         <div className="top">
@@ -119,23 +122,9 @@ function Board({ lifes, setLifes }: BoardProps) {
             {win ? <><h1>You won! Congratulations</h1> <div className="bottom"> <button className="start-over" onClick={startOver}>Start over</button></div></> : cardsToPlay.length > -1 && nextCard && <NextCard nextCard={nextCard} />}</div>
           : <div className="bottom"> <button className="start-over" onClick={startOver}>Start over</button></div>}
       </div>
-      <h1>Wrong cards</h1>
-      <Droppable droppableId="wrong-cards" direction="horizontal">
-        {(provided) => (
-          <div className="wrong-cards" ref={provided.innerRef} {...provided.droppableProps}>
-            {wrongCards && wrongCards.map((card, i) =>
-              <TimelineCard
-                isWrong={true}
-                key={card.id}
-                card={card}
-                index={i}
-                isDragDisabled={true}
-              />
-            )}
-          </div>
-        )}
-      </Droppable>
+      
     </DragDropContext>
+    </>
   );
 }
 

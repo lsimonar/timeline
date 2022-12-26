@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import Board from './components/Board/Board';
-import Lifes from './components/Lifes/Lifes';
 import './App.scss';
 
   function App() {
@@ -8,8 +7,7 @@ import './App.scss';
 
     return (
       <div className="app-ctn">
-        <Lifes lifes={lifes} />
-        <Board lifes={lifes} setLifes={setLifes} />
+        <Board lifes={5} setLifes={setLifes} />
       </div>
     )
 }
