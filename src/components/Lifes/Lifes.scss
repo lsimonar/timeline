@@ -3,9 +3,11 @@ p {
 }
 
 .lifes-ctn{
-  margin-top: 10px;
-  height: 150px !important;
+  margin-top: 15px;
+  height: 150px;
 }
+
+
 
 .square-ctn {
   transform: scale(0.5);
@@ -16,9 +18,21 @@ p {
   transform: scale(0.8);
 }
 
+@media screen and (max-width: 600px) {
+  .square-ctn {
+    transform: scale(0.3);
+  }
+
+  .square-ctn:hover {
+    transition-duration: 0.5s;
+    transform: scale(0.5);
+  }
+}
+
 .square{
     aspect-ratio: 0.75;
     height: 120px;
+    max-height: 20vw;
     border: 2px dashed red;
     margin: 10px;
     border-radius: 7px;
