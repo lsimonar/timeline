@@ -5,29 +5,29 @@ import { Card } from "../../utils/types";
 import './Board.scss'
 import PlayedCards from "../PlayedCards/PlayedCards";
 import NextCard from "../NextCard/NextCard";
-import { allCards } from "../../utils/cards";
 import Lifes from "../Lifes/Lifes";
 
 interface BoardProps {
   lifes: number;
   setLifes: React.Dispatch<React.SetStateAction<number>>;
+  deck: Card[]
 }
 
-function Board({ lifes, setLifes }: BoardProps) {
+function Board({ lifes, setLifes, deck }: BoardProps) {
 
-  const [nextCard, setNextCard] = useState<Card[] | undefined>([allCards[0]])
-  const [playedCards, setPlayedCards] = useState<Card[]>([allCards[1]]);
-  const [cardsToPlay, setCardsToPlay] = useState<Card[]>(allCards.slice(2))
+  const [nextCard, setNextCard] = useState<Card[] | undefined>([deck[0]])
+  const [playedCards, setPlayedCards] = useState<Card[]>([deck[1]]);
+  const [cardsToPlay, setCardsToPlay] = useState<Card[]>(deck.slice(2))
   const [isDragging, setIsDragging] = useState<boolean>(true);
   const [wrongCards, setWrongCards] = useState<Card[]>([]);
-  const [cardToFlip, setCardToFlip] = useState<Card>(allCards[1]);
+  const [cardToFlip, setCardToFlip] = useState<Card>(deck[1]);
   const [win, setWin] = useState<boolean>(false)
 
   const startOver = () => {
-    setNextCard([allCards[0]])
-    setPlayedCards([allCards[1]])
-    setCardsToPlay(allCards.slice(2))
-    setCardToFlip(allCards[1])
+    setNextCard([deck[0]])
+    setPlayedCards([deck[1]])
+    setCardsToPlay(deck.slice(2))
+    setCardToFlip(deck[1])
     setLifes(5)
     setWrongCards([])
     setWin(false)
