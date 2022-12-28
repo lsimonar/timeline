@@ -5,16 +5,26 @@ import { HomePage } from './components/HomePage/HomePage';
 import { allCards } from "./utils/cards";
 import { peopleCards } from "./utils/PeopleCards";
 import { Card } from './utils/types';
+import {
+  BrowserRouter,
+  Routes, //replaces "Switch" used till v5
+  Route,
+} from "react-router-dom";
 
   function App() {
     const [lifes, setLifes] = useState<number>(5);
     const [selectedDeck, setSelectedDeck] = useState<Card[]|undefined>()
     return (
       <>
-      <div className="app-ctn">
-       {!selectedDeck ?  
-      <HomePage setSelectedDeck={setSelectedDeck}/> : <Board deck = {selectedDeck} lifes ={5} setLifes={setLifes} />
-       }</div>
+        <BrowserRouter>
+          <div className="app-ctn">
+          <Routes>
+            <Route path="/" element={<HomePage setSelectedDeck={setSelectedDeck}/>} />
+            <Route path="/world-history" element={<Board deck = {allCards} lifes ={5} setLifes={setLifes} />} />
+            <Route path="/famous-characters" element={<Board deck = {peopleCards} lifes ={5} setLifes={setLifes} />} />
+          </Routes>  
+          </div>
+        </BrowserRouter>
       </>
     )
 }
