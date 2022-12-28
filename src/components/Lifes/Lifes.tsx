@@ -14,10 +14,6 @@ function Square({wrongCard}: SquareProps){
     <div className="square-ctn">
       <div className="card">
         <div id={wrongCard.id} className='card-inner flipped' >
-          <div className="card-front">
-            <img src={process.env.PUBLIC_URL + wrongCard.img} alt={wrongCard.content}></img>
-            <p className="card-text">{wrongCard.content}</p>
-          </div>
           <div className="card-back">
             <img src={process.env.PUBLIC_URL + wrongCard.img} alt={wrongCard.content}></img>
             <p className= 'card-date wrong'>{`${wrongCard.date.getFullYear()}`}</p>
