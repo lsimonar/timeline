@@ -186,5 +186,11 @@ export const allCards: Card[] = [
     date: new Date("1381"),
     content: "The Peasants' Revolt in England",
     img: url + 'peasants_revolt.jpg'
+  },
+  {
+    id: "29",
+    date: new Date("1271"),
+    content: "Marco Polo begins his journey to China",
+    img: url + 'marco-polo.jpg'
   }
 ]

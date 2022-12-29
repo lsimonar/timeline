@@ -32,7 +32,7 @@ export function HomePage(props: HomePageProps): JSX.Element{
 
     return(<>
         <div className="home-page-ctn">
-            <h1>Timeline</h1>
+            <h1 className="home-title">Timeline</h1>
             <div className="home-buttons-ctn">
                 <GameMode 
                     gamemode="World History" 
