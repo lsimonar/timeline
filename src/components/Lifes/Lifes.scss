@@ -20,12 +20,12 @@ p {
 
 @media screen and (max-width: 600px) {
   .square-ctn {
-    transform: scale(0.3);
+    transform: scale(0.4);
   }
 
   .square-ctn:hover {
     transition-duration: 0.5s;
-    transform: scale(0.5);
+    transform: scale(0.7);
   }
 }
 
