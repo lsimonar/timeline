@@ -124,7 +124,7 @@ function Board({ lifes, setLifes, deck }: BoardProps) {
               {win ? <><h1>You won! Congratulations</h1> <div className="bottom"> <button className="start-over" onClick={startOver}>Start over</button></div></> : cardsToPlay.length > -1 && nextCard && <div><NextCard nextCard={nextCard} /></div>}</div>
             : <div className="bottom"> <button className="start-over" onClick={startOver}>Start over</button></div>
           }
-        {!win && wrongCards.length < 5 && <p>{`${5 - rightCards} remaining cards`}</p>}
+        <div className = "remaining-cards">{!win && wrongCards.length < 5 && <p>{`${5 - rightCards} remaining cards to win`}</p>}</div>
         </div>
       </DragDropContext>
     </>
