@@ -3,10 +3,6 @@ import { Card } from "../../utils/types"
 import './HomePage.scss'
 
 
-interface HomePageProps{
-    setSelectedDeck:React.Dispatch<React.SetStateAction<Card[]|undefined>>
-}
-
 interface GameModeProps {
     gamemode: string;
     subtitle: string;
@@ -14,7 +10,7 @@ interface GameModeProps {
 }
 
 
-export function HomePage(props: HomePageProps): JSX.Element{
+export function HomePage(): JSX.Element{
 
     let navigate = useNavigate();
 

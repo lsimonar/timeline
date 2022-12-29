@@ -22,6 +22,7 @@ function Board({ lifes, setLifes, deck }: BoardProps) {
   const [wrongCards, setWrongCards] = useState<Card[]>([]);
   const [cardToFlip, setCardToFlip] = useState<Card>(deck[1]);
   const [win, setWin] = useState<boolean>(false)
+  const [rightCards, setRightCards] = useState<number>(0)
 
   const startOver = () => {
     setNextCard([deck[0]])
@@ -31,9 +32,10 @@ function Board({ lifes, setLifes, deck }: BoardProps) {
     setLifes(5)
     setWrongCards([])
     setWin(false)
+    setRightCards(0)
   }
   useEffect(() => {
-    if (playedCards.length === 6) {
+    if (rightCards === 5) {
       setWin(true)
     }
   }, [playedCards])
@@ -87,6 +89,7 @@ function Board({ lifes, setLifes, deck }: BoardProps) {
         setTimeout(
           () => document.getElementById(removed.id)?.classList.add('flipped')
           , 125)
+        setRightCards(rightCards+1)
         setNextCard(getRandomCard())
       } else {
         setLifes(lifes - 1)
@@ -110,19 +113,20 @@ function Board({ lifes, setLifes, deck }: BoardProps) {
 
   return (
     <>
-    <Lifes wrongCards={wrongCards} lifes={lifes}/>
-    <DragDropContext onDragStart={onDragStart} onDragEnd={onDragEnd}>
-      <div className="wrapper">
-        <div className="top">
-          <PlayedCards isDragDisabled={isDragging} cards={playedCards} cardToFlip={cardToFlip?.id} />
+      <Lifes wrongCards={wrongCards} lifes={lifes} />
+      <DragDropContext onDragStart={onDragStart} onDragEnd={onDragEnd}>
+        <div className="wrapper">
+          <div className="top">
+            <PlayedCards isDragDisabled={isDragging} cards={playedCards} cardToFlip={cardToFlip?.id} />
+          </div>
+          {wrongCards.length < 5 ?
+            <div className="bottom">
+              {win ? <><h1>You won! Congratulations</h1> <div className="bottom"> <button className="start-over" onClick={startOver}>Start over</button></div></> : cardsToPlay.length > -1 && nextCard && <div><NextCard nextCard={nextCard} /></div>}</div>
+            : <div className="bottom"> <button className="start-over" onClick={startOver}>Start over</button></div>
+          }
+        {!win && wrongCards.length < 5 && <p>{`${5 - rightCards} remaining cards`}</p>}
         </div>
-        {wrongCards.length < 5 ?
-          <div className="bottom">
-            {win ? <><h1>You won! Congratulations</h1> <div className="bottom"> <button className="start-over" onClick={startOver}>Start over</button></div></> : cardsToPlay.length > -1 && nextCard && <NextCard nextCard={nextCard} />}</div>
-          : <div className="bottom"> <button className="start-over" onClick={startOver}>Start over</button></div>}
-      </div>
-      
-    </DragDropContext>
+      </DragDropContext>
     </>
   );
 }

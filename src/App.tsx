@@ -13,13 +13,12 @@ import {
 
   function App() {
     const [lifes, setLifes] = useState<number>(5);
-    const [selectedDeck, setSelectedDeck] = useState<Card[]|undefined>()
     return (
       <>
         <BrowserRouter>
           <div className="app-ctn">
           <Routes>
-            <Route path="/" element={<HomePage setSelectedDeck={setSelectedDeck}/>} />
+            <Route path="/" element={<HomePage/>} />
             <Route path="/world-history" element={<Board deck = {allCards} lifes ={5} setLifes={setLifes} />} />
             <Route path="/famous-characters" element={<Board deck = {peopleCards} lifes ={5} setLifes={setLifes} />} />
           </Routes>  
