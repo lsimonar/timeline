@@ -13,7 +13,7 @@ interface PlayedCardsProps {
 function PlayedCards( {cards, isDragDisabled, cardToFlip}: PlayedCardsProps ){
 
     return(
-        <div className="wrapper">
+        <div className="wrapper-top">
             <div className="listContainer">
                 <Droppable droppableId="timeline-cards" direction="horizontal">
                 {(provided) => (
