@@ -9,11 +9,10 @@ import Lifes from "../Lifes/Lifes";
 
 interface BoardProps {
   lifes: number;
-  setLifes: React.Dispatch<React.SetStateAction<number>>;
   deck: Card[]
 }
 
-function Board({ lifes, setLifes, deck }: BoardProps) {
+function Board({ lifes, deck }: BoardProps) {
 
   const [nextCard, setNextCard] = useState<Card[] | undefined>([deck[0]])
   const [playedCards, setPlayedCards] = useState<Card[]>([deck[1]]);
@@ -29,7 +28,6 @@ function Board({ lifes, setLifes, deck }: BoardProps) {
     setPlayedCards([deck[1]])
     setCardsToPlay(deck.slice(2))
     setCardToFlip(deck[1])
-    setLifes(5)
     setWrongCards([])
     setWin(false)
     setRightCards(0)
@@ -38,7 +36,7 @@ function Board({ lifes, setLifes, deck }: BoardProps) {
     if (rightCards === 5) {
       setWin(true)
     }
-  }, [playedCards])
+  }, [rightCards])
 
   const getRandomCard = () => {
     if (cardsToPlay.length > 0 && nextCard) {
@@ -92,7 +90,6 @@ function Board({ lifes, setLifes, deck }: BoardProps) {
         setRightCards(rightCards+1)
         setNextCard(getRandomCard())
       } else {
-        setLifes(lifes - 1)
         setPlayedCards(destClone);
         setTimeout(
           () => document.getElementById(removed.id)?.classList.add('flipped')

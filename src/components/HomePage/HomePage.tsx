@@ -1,5 +1,4 @@
 import { useNavigate } from "react-router-dom"
-import { Card } from "../../utils/types"
 import './HomePage.scss'
 
 
