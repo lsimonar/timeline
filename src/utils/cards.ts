@@ -192,5 +192,72 @@ export const allCards: Card[] = [
     date: new Date("1271"),
     content: "Marco Polo begins his journey to China",
     img: url + 'marco-polo.jpg'
-  }
+  },
+  {
+    id: "30",
+    date: new Date(-19999, 0, 0),
+    content: "Earliest evidence of humans exerting control over grain",
+    img: url + ''
+  },
+  {
+    id: "31",
+    date: new Date(-4499, 0, 0),
+    content: "The first city emerges in Mesopotamia",
+    img: url + ''
+  },
+  {
+    id: "32",
+    date: new Date(-3499, 0, 0),
+    content: "The first wheeled vehicles appear",
+    img: url + ''
+  },
+  {
+    id: "33",
+    date: new Date(-3199, 0, 0),
+    content: "The first writing systems appear",
+    img: url + ''
+  },
+  {
+    id: "34",
+    date: new Date(-2559, 0, 0),
+    content: "The Great Pyramid of Giza is built",
+    img: url + ''
+  },
+  {
+    id: "35",
+    date: new Date(-1999, 0, 0),
+    content: "Beginning of Iron Age",
+    img: url + ''
+  },
+  {
+    id: "36",
+    date: new Date(-799, 0, 0),
+    content: "The Rise of Ancient Greek Civilization",
+    img: url + ''
+  },
+  {
+    id: "37",
+    date: new Date(-44, 0, 0),
+    content: "The birth of the modern calendar",
+    img: url + ''
+  },
+  {
+    id: "38",
+    date: new Date("1088"),
+    content: "The first university is established, at Bologna",
+    img: url + ''
+  },
+  {
+    id: "39",
+    date: new Date("1150"),
+    content: "King Suryavarman II builds Angkor Wat",
+    img: url + ''
+  },
+  {
+    id: "40",
+    date: new Date("1600"),
+    content: "William Shakespeare writes Hamlet",
+    img: url + ''
+  },
+
 ]
