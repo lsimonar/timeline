@@ -14,14 +14,17 @@ interface BoardProps {
 
 function Board({ lifes, deck }: BoardProps) {
 
-  const [nextCard, setNextCard] = useState<Card[] | undefined>([deck[0]])
-  const [playedCards, setPlayedCards] = useState<Card[]>([deck[1]]);
-  const [cardsToPlay, setCardsToPlay] = useState<Card[]>(deck.slice(2))
+  const [initialCard] = deck.splice(Math.floor(Math.random() * deck.length), 1)
+  const [initialPlayedCard] = deck.splice(Math.floor(Math.random() * deck.length), 1)
+
+  const [nextCard, setNextCard] = useState<Card[] | undefined>([initialCard])
+  const [playedCards, setPlayedCards] = useState<Card[]>([initialPlayedCard]);
+  const [cardsToPlay, setCardsToPlay] = useState<Card[]>(deck)
   const [isDragging, setIsDragging] = useState<boolean>(true);
   const [wrongCards, setWrongCards] = useState<Card[]>([]);
-  const [cardToFlip, setCardToFlip] = useState<Card>(deck[1]);
-  const [win, setWin] = useState<boolean>(false)
-  const [rightCards, setRightCards] = useState<number>(0)
+  const [cardToFlip, setCardToFlip] = useState<Card>(initialPlayedCard);
+  const [win, setWin] = useState<boolean>(false);
+  const [rightCards, setRightCards] = useState<number>(0);
 
   const startOver = () => {
     setNextCard([deck[0]])
@@ -127,3 +130,7 @@ function Board({ lifes, deck }: BoardProps) {
 }
 
 export default Board;
+
+function useCallBack(arg0: Card[]): [any] {
+  throw new Error("Function not implemented.");
+}
