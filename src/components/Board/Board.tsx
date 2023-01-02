@@ -63,8 +63,6 @@ function Board({ lifes, deck }: BoardProps) {
     setIsDragging(false);
   }
 
-
-
   const onDragEnd = (result: DropResult) => {
     const { source, destination } = result;
     setIsDragging(true);
