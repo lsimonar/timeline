@@ -29,11 +29,11 @@ function Board({ lifes, deck }: BoardProps) {
 
   const startOver = () => {
     deckCopy = [...deck];
-    const [initialNextCard] = deckCopy.splice(Math.floor(Math.random() * deckCopy.length), 1)
-    const [initialPlayedCard] = deckCopy.splice(Math.floor(Math.random() * deckCopy.length), 1)
-    setNextCard([initialNextCard])
-    setPlayedCards([initialPlayedCard])
-    setCardsToPlay(deck.slice(2))
+    const [initialNextCard] = deckCopy.splice(Math.floor(Math.random() * deckCopy.length), 1);
+    const [initialPlayedCard] = deckCopy.splice(Math.floor(Math.random() * deckCopy.length), 1);
+    setNextCard([initialNextCard]);
+    setPlayedCards([initialPlayedCard]);
+    setCardsToPlay(deckCopy);
     setCardToFlip(initialPlayedCard)
     setWrongCards([])
     setWin(false)
