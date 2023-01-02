@@ -33,7 +33,7 @@ function Lifes({wrongCards, lifes}: LifesProps) {
             hearts.push(
               <div key = {i} className="square">
                 {wrongCards[i]? <Square wrongCard={wrongCards[i]}/> : 
-                 i === 4? <span style={{color: 'red'}}>Game Over</span> : ''}
+                 i === lifes - 1? <span style={{color: 'red'}}>Game<br/>Over</span> : ''}
               </div>)
         }
         return hearts;
