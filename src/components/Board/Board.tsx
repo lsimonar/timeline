@@ -14,12 +14,13 @@ interface BoardProps {
 
 function Board({ lifes, deck }: BoardProps) {
 
-  const [initialCard] = deck.splice(Math.floor(Math.random() * deck.length), 1)
-  const [initialPlayedCard] = deck.splice(Math.floor(Math.random() * deck.length), 1)
+  let deckCopy = [...deck];
+  const [initialNextCard] = deckCopy.splice(Math.floor(Math.random() * deckCopy.length), 1)
+  const [initialPlayedCard] = deckCopy.splice(Math.floor(Math.random() * deckCopy.length), 1)
 
-  const [nextCard, setNextCard] = useState<Card[] | undefined>([initialCard])
+  const [nextCard, setNextCard] = useState<Card[] | undefined>([initialNextCard])
   const [playedCards, setPlayedCards] = useState<Card[]>([initialPlayedCard]);
-  const [cardsToPlay, setCardsToPlay] = useState<Card[]>(deck)
+  const [cardsToPlay, setCardsToPlay] = useState<Card[]>(deckCopy)
   const [isDragging, setIsDragging] = useState<boolean>(true);
   const [wrongCards, setWrongCards] = useState<Card[]>([]);
   const [cardToFlip, setCardToFlip] = useState<Card>(initialPlayedCard);
@@ -27,10 +28,13 @@ function Board({ lifes, deck }: BoardProps) {
   const [rightCards, setRightCards] = useState<number>(0);
 
   const startOver = () => {
-    setNextCard([deck[0]])
-    setPlayedCards([deck[1]])
+    deckCopy = [...deck];
+    const [initialNextCard] = deckCopy.splice(Math.floor(Math.random() * deckCopy.length), 1)
+    const [initialPlayedCard] = deckCopy.splice(Math.floor(Math.random() * deckCopy.length), 1)
+    setNextCard([initialNextCard])
+    setPlayedCards([initialPlayedCard])
     setCardsToPlay(deck.slice(2))
-    setCardToFlip(deck[1])
+    setCardToFlip(initialPlayedCard)
     setWrongCards([])
     setWin(false)
     setRightCards(0)
