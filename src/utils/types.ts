@@ -1,6 +1,6 @@
 export interface Card{
     id: string,
-    date: Date,
+    date: number,
     content: string,
     img: string
 }

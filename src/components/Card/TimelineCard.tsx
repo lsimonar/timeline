@@ -31,7 +31,7 @@ export default function TimelineCard({ card, index, isDragDisabled, cardToFlip, 
                 </div>
                 <div className="card-back">
                   <img src={process.env.PUBLIC_URL + card.img} alt={card.content}></img>
-                  <p className= {isWrong === true ? 'card-date wrong': 'card-date' }>{`${card.date.getFullYear()}`}</p>
+                  <p className= {isWrong === true ? 'card-date wrong': 'card-date' }>{`${card.date}`}</p>
                   <p className="card-text">{card.content}</p>
                 </div>
               </div>
