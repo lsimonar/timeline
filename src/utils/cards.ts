@@ -74,7 +74,7 @@ export const allCards: Card[] = [
     id: "12",
     date: 1066,
     content: "The Norman Conquest of England",
-    img: url + 'Norman-conquest.svg'
+    img: url + 'norman-conquest.png'
   },
 
   {
@@ -197,216 +197,216 @@ export const allCards: Card[] = [
     id: "30",
     date: -20000,
     content: "Earliest evidence of humans exerting control over grain",
-    img: url + ''
+    img: url + 'agriculture.jpg'
   },
   {
     id: "31",
     date: -4500,
     content: "The first city emerges in Mesopotamia",
-    img: url + ''
+    img: url + 'first-city-mesopotamia.jpg'
   },
   {
     id: "32",
     date: -3500,
     content: "The first wheeled vehicles appear",
-    img: url + ''
+    img: url + 'first-wheel.jpg'
   },
   {
     id: "33",
     date: -3200,
     content: "The first writing systems appear",
-    img: url + ''
+    img: url + 'first-writing.jpg'
   },
   {
     id: "34",
     date: -2560,
     content: "The Great Pyramid of Giza is built",
-    img: url + ''
+    img: url + 'pyramid-giza.jpg'
   },
   {
     id: "35",
     date: -2000,
     content: "Beginning of Iron Age",
-    img: url + ''
+    img: url + 'iron-age.jpg'
   },
   {
     id: "36",
     date: -799,
     content: "The Rise of Ancient Greek Civilization",
-    img: url + ''
+    img: url + 'greek-civilization.jpg'
   },
   {
     id: "37",
     date: -44,
     content: "The birth of the modern calendar",
-    img: url + ''
+    img: url + 'modern-calendar.jpg'
   },
   {
     id: "38",
     date: 1088,
     content: "The first university is established, at Bologna",
-    img: url + ''
+    img: url + 'university-of-bologna.png'
   },
   {
     id: "39",
     date: 1150,
     content: "King Suryavarman II builds Angkor Wat",
-    img: url + ''
+    img: url + 'AngkorWat.jpg'
   },
   {
     id: "40",
     date: 1600,
     content: "William Shakespeare writes Hamlet",
-    img: url + ''
+    img: url + 'hamlet.jpg'
   },
   {
     id: "41",
     date: 1609,
     content: "Galileo Galilei publishes The Starry Messenger",
-    img: url + ''
+    img: url + 'the-starry-messenger.jpg'
   },
   {
     id: "42",
     date: 1859,
     content: "Charles Darwin publishes On the Origin of Species",
-    img: url + ''
+    img: url + 'darwin.jpg'
   },
   {
     id: "43",
     date: 1945,
     content: "The United Nations is formed",
-    img: url + ''
+    img: url + 'united-nations.png'
   },
   {
     id: "44",
     date: 1969,
     content: "First men lands on the Moon",
-    img: url + ''
+    img: url + 'moon-landing.jpg'
   },
   {
     id: "45",
     date: -195000,  
     content: "First evidence of Homo Sapiens",
-    img: url + ''
+    img: url + 'homo-sapiens.jpg'
   },
   {
     id: "46",
     date: -41000,  
     content: "First known musical instruments",
-    img: url + ''
+    img: url + 'first-instruments.jpg'
   },
   {
     id: "47",
     date: -33000,  
     content: "Earliest evidence of the domestication of the dog",
-    img: url + ''
+    img: url + 'domestication-dog.jpg'
   },
   {
     id: "48",
     date: -23000,  
     content: "Beginning of the most recent Ice Age",
-    img: url + ''
+    img: url + 'ice-age.jpg'
   },
   {
     id: "49",
     date: -7500,  
     content: "Domestication of cats",
-    img: url + ''
+    img: url + 'domestication-cat.jpg'
   },
   {
     id: "50",
     date: -4500,  
     content: "First evidence of bronze making",
-    img: url + ''
+    img: url + 'first-bronze.jpg'
   },
   {
     id: "51",
     date: -4000,  
     content: "Domestication of the horse",
-    img: url + ''
+    img: url + 'domestication-horse.jpg'
   },
   {
     id: "52",
     date: -3300,  
     content: "The Bronze Age begins",
-    img: url + ''
+    img: url + 'bronze-age.jpg'
   },
   {
     id: "53",
     date: -1400,  
     content: "The Ugarits invent the first alphabet",
-    img: url + ''
+    img: url + 'first-alphabet.jpg'
   },
   {
     id: "54",
     date: -776,  
     content: "The first Olympic Games are held at Olympia",
-    img: url + ''
+    img: url + 'first-olympic-games.jpg'
   },
   {
     id: "55",
     date: -753,  
     content: "Legendary date of founding of Rome",
-    img: url + ''
+    img: url + 'founding-of-rome.jpg'
   },
   {
     id: "56",
     date: -725,  
     content: "The Iliad, by Homer, is written down",
-    img: url + ''
+    img: url + 'Iliad.jpg'
   },
   {
     id: "57",
     date: -432,  
     content: "The Parthenon is built on the Acropolis in Athens",
-    img: url + ''
+    img: url + 'Parthenon.jpg'
   },
   {
     id: "58",
     date: -380,  
     content: "Plato writes The Republic",
-    img: url + ''
+    img: url + 'republic-plato.jpg'
   },
   {
     id: "59",
     date: -206,  
     content: "Completion of the first Great Wall of China",
-    img: url + ''
+    img: url + 'great-wall.jpg'
   },
   {
     id: "60",
     date: -200,  
     content: "Invention of paper",
-    img: url + ''
+    img: url + 'paper.jpg'
   },
   {
     id: "61",
     date: 79,  
     content: "The Mt. Vesuvius volcano erupts, burying Pompeii",
-    img: url + ''
+    img: url + 'destruction-pompeii.jpg'
   },
   {
     id: "62",
     date: 80,  
     content: "The Colosseum is built in Rome",
-    img: url + ''
+    img: url + 'Colosseum.jpg'
   },
   {
     id: "63",
     date: 122,  
     content: "The Romans build Hadrian's Wall",
-    img: url + ''
+    img: url + 'hadrians-wall.jpg'
   },
   {
     id: "64",
     date: 160,  
     content: "The Antonine Plague begins in the Roman Empire",
-    img: url + ''
+    img: url + 'antonine-plague.jpg'
   },
   {
     id: "65",
     date: 376,  
     content: "The Huns invade the Balkans",
-    img: url + ''
+    img: url + 'huns-invade-balkans.jpg'
   },
 ]

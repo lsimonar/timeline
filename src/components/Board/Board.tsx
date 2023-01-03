@@ -57,10 +57,10 @@ function Board({ lifes, deck }: BoardProps) {
 
   const checkCorrect = (index: number, playedCards: Card[]) => {
 
-    if (nextCard && index > 0 && nextCard[0].date <= playedCards[index - 1].date) {
+    if (nextCard && index > 0 && nextCard[0].date < playedCards[index - 1].date) {
       return false;
     }
-    if (nextCard && index < playedCards.length - 1 && nextCard[0].date >= playedCards[index + 1].date) {
+    if (nextCard && index < playedCards.length - 1 && nextCard[0].date > playedCards[index + 1].date) {
       return false;
     }
     return true;
