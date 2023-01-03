@@ -15,6 +15,9 @@ interface BoardProps {
 function Board({ lifes, deck }: BoardProps) {
 
   let deckCopy = [...deck];
+  deckCopy.forEach((card) => {
+    new Image().src = process.env.PUBLIC_URL + card.img;
+  })
   const [initialNextCard] = deckCopy.splice(Math.floor(Math.random() * deckCopy.length), 1)
   const [initialPlayedCard] = deckCopy.splice(Math.floor(Math.random() * deckCopy.length), 1)
 
@@ -134,7 +137,3 @@ function Board({ lifes, deck }: BoardProps) {
 }
 
 export default Board;
-
-function useCallBack(arg0: Card[]): [any] {
-  throw new Error("Function not implemented.");
-}
