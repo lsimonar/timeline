@@ -1,5 +1,5 @@
 
-import React, { useEffect, useState } from "react";
+import React, { useLayoutEffect, useState } from "react";
 import { DragDropContext, DropResult } from "react-beautiful-dnd";
 import { Card } from "../../utils/types";
 import './Board.scss'
@@ -15,9 +15,6 @@ interface BoardProps {
 function Board({ lifes, deck }: BoardProps) {
 
   let deckCopy = [...deck];
-  deckCopy.forEach((card) => {
-    new Image().src = process.env.PUBLIC_URL + card.img;
-  })
   const [initialNextCard] = deckCopy.splice(Math.floor(Math.random() * deckCopy.length), 1)
   const [initialPlayedCard] = deckCopy.splice(Math.floor(Math.random() * deckCopy.length), 1)
 
@@ -42,7 +39,8 @@ function Board({ lifes, deck }: BoardProps) {
     setWin(false)
     setRightCards(0)
   }
-  useEffect(() => {
+  
+  useLayoutEffect(() => {
     if (rightCards === 5) {
       setWin(true)
     }
