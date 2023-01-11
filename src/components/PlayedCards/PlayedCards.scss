@@ -3,8 +3,13 @@
 .wrapper-top {
   width: min-content;
   min-width: 100%;
+  background: linear-gradient(180deg, 
+    rgba(0,0,0,0) calc(50% - 1px), 
+    rgba(192,192,192,1) calc(50%), 
+    rgba(0,0,0,0) calc(50% + 1px)
+  );
   height: 100%;
-  padding: 19px 30px 0 20px;
+  padding: 20px 30px 0 20px;
   display: flex;
 
   }
@@ -12,4 +17,5 @@
   .items {
     display: flex;
     align-items: center;
+    width: 100%;
   }
