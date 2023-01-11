@@ -13,6 +13,7 @@ interface BoardProps {
 }
 
 function Board({ lifes, deck }: BoardProps) {
+  console.log(deck)
 
   let deckCopy = [...deck];
   const [initialNextCard] = deckCopy.splice(Math.floor(Math.random() * deckCopy.length), 1)
@@ -26,6 +27,8 @@ function Board({ lifes, deck }: BoardProps) {
   const [cardToFlip, setCardToFlip] = useState<Card>(initialPlayedCard);
   const [win, setWin] = useState<boolean>(false);
   const [rightCards, setRightCards] = useState<number>(0);
+
+  console.log(nextCard)
 
   const startOver = () => {
     deckCopy = [...deck];
@@ -122,12 +125,29 @@ function Board({ lifes, deck }: BoardProps) {
           <div className="top">
             <PlayedCards isDragDisabled={isDragging} cards={playedCards} cardToFlip={cardToFlip?.id} />
           </div>
-          {wrongCards.length < 5 ?
-            <div className="bottom">
-              {win ? <><h1>You won! Congratulations</h1> <div className="bottom"> <button className="start-over" onClick={startOver}>Start over</button></div></> : cardsToPlay.length > -1 && nextCard && <div><NextCard nextCard={nextCard} /></div>}</div>
-            : <div className="bottom"> <button className="start-over" onClick={startOver}>Start over</button></div>
-          }
-        <div className = "remaining-cards">{!win && wrongCards.length < 5 && <p>{`${5 - rightCards} remaining cards to win`}</p>}</div>
+          <div className="bottom">
+            {wrongCards.length < 5 ?
+              <>
+                {win ? 
+                  <>
+                    <h1>You won! Congratulations</h1> 
+                    <div className="bottom"> 
+                      <button className="start-over" onClick={startOver}>Start over</button>
+                    </div>
+                  </>: 
+                cardsToPlay.length > -1 && nextCard && 
+                  <NextCard nextCard={nextCard} />
+                }
+              </>:
+                 <button className="start-over" onClick={startOver}>Start over</button>
+            }
+          </div>
+
+          <div className = "remaining-cards">
+            {!win && wrongCards.length < 5 && 
+              <p>{`${5 - rightCards} remaining cards to win`}</p>
+            }
+          </div>
         </div>
       </DragDropContext>
     </>

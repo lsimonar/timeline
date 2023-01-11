@@ -1,16 +1,18 @@
 import { Card } from "./types";
 
+const url = '/images/people-img/'
+
 export const peopleCards: Card[] = [
   { id: "1",
   date: 1452,
   content: "Leonardo da Vinci's birthday",
-  img: ''
+  img: url + 'leonardo_da_vinci.png'
   },
   
   { id: "2",
   date: 1775,
   content: "Jane Austen's birthday",
-  img: ''
+  img: url + 'jane_austen.jpg'
   },
   
   { id: "3",

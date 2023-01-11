@@ -21,6 +21,9 @@ export default function TimelineCard({ card, index, isDragDisabled, cardToFlip, 
       img.onload = () => {
         setIsCardLoaded(true);
       };
+      setTimeout(() => {
+        setIsCardLoaded(true);
+      }, 2000)
     }, [imageUrl]);
 
     if (!isCardLoaded && index === 0 && !isDragDisabled) {
